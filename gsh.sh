@@ -1,7 +1,6 @@
 #!/bin/bash
 
 files(){
-
         echo "<br><br>" >> $TMPFILE
         echo -e "<a href=\042#home\042>[Back to top]</a>" >> $TMPFILE
         echo -e "<h3>File description: <a name=\042$2\042></a>$2</h3>" >> $TMPFILE
@@ -10,11 +9,9 @@ files(){
         echo "<pre>" >> $TMPFILE
         cat $1 | sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g' -e 's/>/\&gt;/g' >> $TMPFILE
         echo "</pre><hr>" >> $TMPFILE
-
 }
 
 cmds(){
-
         echo "<br>" >> $TMPFILE
         echo -e "<a href=\042#home\042>[Back to top]</a>" >> $TMPFILE
         echo -e "<h3>Command description: <a name=\042$2\042></a>$2</h3>" >> $TMPFILE
@@ -24,12 +21,20 @@ cmds(){
         echo "<pre>" >> $TMPFILE
         $1 | sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g' -e 's/>/\&gt;/g' >> $TMPFILE
         echo "</pre><hr>" >> $TMPFILE
-
-
 }
 
 
-
+logfile() {
+        echo "<br><br>" >> $TMPFILE
+        echo -e "<a href=\042#home\042>[Back to the top]</a>" >> $TMPFILE
+        echo -e "<h3>File description: <a name=\042$2\042></a>$2</h3>" >> $TMPFILE
+        echo -e "<li><a href=\042#$2\042>$2</a>" >> $HTMLFILE
+        echo "<h4>File contents of $1</h4>" >> $TMPFILE
+        echo "<pre>" >> $TMPFILE
+        echo "Command: tail -500 $1"
+        tail -500 $1 | sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g' -e 's/>/\&gt;/g' >> $TMPFILE
+        echo "</pre><hr>" >> $TMPFILE
+}
 
 
 
